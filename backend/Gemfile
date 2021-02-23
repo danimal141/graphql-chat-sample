@@ -21,7 +21,6 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'graphql'
 gem 'jwt'
-gem 'komachi_heartbeat'
 gem 'pry-rails'
 gem 'rack-cors'
 gem 'ridgepole'

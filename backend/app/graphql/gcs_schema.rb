@@ -3,6 +3,7 @@
 class GcsSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
+  subscription(Types::SubscriptionType)
 
   context_class(GcsSchema::CustomContext)
 
@@ -12,4 +13,7 @@ class GcsSchema < GraphQL::Schema
 
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
+
+  # subscription with ActionCable
+  use GraphQL::Subscriptions::ActionCableSubscriptions
 end

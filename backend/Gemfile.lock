@@ -95,9 +95,6 @@ GEM
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     jwt (2.2.2)
-    komachi_heartbeat (2.5.0)
-      rails (>= 4.1.0)
-      redis
     listen (3.3.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -170,7 +167,6 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.2.2)
     regexp_parser (1.8.2)
     rexml (3.2.4)
     ridgepole (0.8.10)
@@ -259,7 +255,6 @@ DEPENDENCIES
   guard-rubocop
   jbuilder (~> 2.7)
   jwt
-  komachi_heartbeat
   listen (~> 3.3)
   mysql2 (>= 0.4.4)
   pry-rails

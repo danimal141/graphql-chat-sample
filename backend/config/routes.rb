@@ -3,6 +3,5 @@
 Rails.application.routes.draw do
   post '/graphql', to: 'graphql#execute'
 
-  # ヘルスチェック
-  mount KomachiHeartbeat::Engine => '/ops'
+  mount ActionCable.server, at: '/cable'
 end
