@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :messages
+  validates :name, uniqueness: true
+
   class << self
     def from_token_payload(payload)
       return if payload.blank?

@@ -2,11 +2,9 @@
 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-create_table :users, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
-  t.string :sub, null: false, comment: 'Auth0 sub'
+create_table :rooms, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
   t.string :name, null: false, comment: 'Name'
   t.timestamps
 
-  t.index ['sub'], name: 'idx_users_on_sub'
   t.index ['name'], name: 'idx_users_on_name', unique: true
 end
