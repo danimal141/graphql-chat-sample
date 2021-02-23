@@ -10,6 +10,8 @@ module Types
     def test_field
       'Hello World!'
     end
+
     field :current_user, resolver: Resolvers::CurrentUserResolver
+    field :room, resolver: Resolvers::RoomResolver
   end
 end
