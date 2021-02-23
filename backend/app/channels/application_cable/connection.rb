@@ -24,7 +24,13 @@ module ApplicationCable
     end
 
     def retrieve_auth_token
-      JsonWebToken.verify(request.params[:token])
+      p '--------'
+      pp request.headers['Authorization']
+      JsonWebToken.verify(http_token)
+    end
+
+    def http_token
+      request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
     end
   end
 end

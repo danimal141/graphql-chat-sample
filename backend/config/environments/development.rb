@@ -54,6 +54,10 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # actioncable
+  config.action_cable.disable_request_forgery_protection = true
+
+
   # cors
   config.middleware.insert_before 0, Rack::Cors do
     allow do

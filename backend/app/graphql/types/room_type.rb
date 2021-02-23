@@ -3,7 +3,7 @@
 module Types
   class RoomType < Types::BaseObject
     field :name, String, null: false
-    field :messages, [Types::Message], null: false do
+    field :messages, [Types::MessageType], null: false do
       argument :last, Integer, required: false, default_value: 20
     end
 

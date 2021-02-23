@@ -35,6 +35,8 @@ module Authenticatable
   end
 
   def retrieve_auth_token
+    p '------------'
+    pp http_token
     JsonWebToken.verify(http_token)
   end
 

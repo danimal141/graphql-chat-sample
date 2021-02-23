@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Resolvers
-  class Roomesolver < LoginRequiredResolver
-    type Types::Room, null: false do
+  class RoomResolver < LoginRequiredResolver
+    type Types::RoomType, null: false do
       argument :name, String, required: true
     end
 
