@@ -1,26 +1,26 @@
+# frozen_string_literal: true
+
 class GraphqlChannel < ApplicationCable::Channel
   def execute(data)
-    query = data["query"]
-    variables = ensure_hash(data["variables"])
-    operation_name = data["operationName"]
+    query = data['query']
+    variables = ensure_hash(data['variables'])
+    operation_name = data['operationName']
     context = {
-      current_user: current_user,
+      # current_user: current_user,
       channel: self,
     }
     result = GcsSchema.execute({
-      query: query,
-      context: context,
-      variables: variables,
-      operation_name: operation_name
-    })
+                                 query: query,
+                                 context: context,
+                                 variables: variables,
+                                 operation_name: operation_name,
+                               })
     payload = {
       result: result.to_h,
       more: result.subscription?,
     }
 
-    if result.context[:subscription_id]
-      @subscription_ids << result.context[:subscription_id]
-    end
+    @subscription_ids << result.context[:subscription_id] if result.context[:subscription_id]
 
     transmit(payload)
   end

@@ -57,7 +57,6 @@ Rails.application.configure do
   # actioncable
   config.action_cable.disable_request_forgery_protection = true
 
-
   # cors
   config.middleware.insert_before 0, Rack::Cors do
     allow do

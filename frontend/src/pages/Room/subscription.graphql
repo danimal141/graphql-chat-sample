@@ -1,0 +1,15 @@
+# subscription MessageWasAdded($room: String!) {
+#   messageWasAdded(room: $room) {
+#     room {
+#       messages {
+#         body
+#       }
+#     }
+#   }
+# }
+
+subscription MessageWasAdded {
+  messageWasAdded {
+    message
+  }
+}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GcsSchema::CustomContext < GraphQL::Query::Context
   def current_user
     self[:current_user]

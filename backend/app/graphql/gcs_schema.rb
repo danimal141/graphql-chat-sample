@@ -16,4 +16,8 @@ class GcsSchema < GraphQL::Schema
 
   # subscription with ActionCable
   use GraphQL::Subscriptions::ActionCableSubscriptions
+
+  def self.id_from_object(object, type, _ctx)
+    Base64.urlsafe_encode64("#{type.name}/#{object.id}")
+  end
 end

@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./pages/Home";
 import CurrentUser from "./pages/CurrentUser";
+import CreateRoom from "./pages/CreateRoom";
+import Room from "./pages/Room";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthorizedProvider from "./lib/AuthorizedProvider";
 
@@ -19,6 +21,8 @@ function App(): JSX.Element {
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/mypage" component={CurrentUser} />
+            <PrivateRoute path="/create-room" component={CreateRoom} />
+            <PrivateRoute path="/room/:name" component={Room} />
           </Switch>
         </BrowserRouter>
       </AuthorizedProvider>

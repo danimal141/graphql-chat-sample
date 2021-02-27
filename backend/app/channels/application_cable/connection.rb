@@ -1,36 +1,38 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    identified_by :current_user
+    # [CAUTION] Ignore authentication
 
-    def connect
-      self.current_user = find_verified_user
-    end
+    # identified_by :current_user
 
-    private
+    # def connect
+    #   self.current_user = find_verified_user
+    # end
 
-    def find_verified_user
-      if current_user = User.from_token_payload(auth_payload)
-        current_user
-      else
-        reject_unauthorized_connection
-      end
-    end
+    # private
 
-    def auth_payload
-      auth_payload, = retrieve_auth_token
-      auth_payload
-    rescue JWT::VerificationError, JWT::DecodeError, ActiveRecord::RecordInvalid
-      nil
-    end
+    # def find_verified_user
+    #   if current_user = User.from_token_payload(auth_payload)
+    #     current_user
+    #   else
+    #     reject_unauthorized_connection
+    #   end
+    # end
 
-    def retrieve_auth_token
-      p '--------'
-      pp request.headers['Authorization']
-      JsonWebToken.verify(http_token)
-    end
+    # def auth_payload
+    #   auth_payload, = retrieve_auth_token
+    #   auth_payload
+    # rescue JWT::VerificationError, JWT::DecodeError, ActiveRecord::RecordInvalid
+    #   nil
+    # end
 
-    def http_token
-      request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
-    end
+    # def retrieve_auth_token
+    #   JsonWebToken.verify(http_token)
+    # end
+
+    # def http_token
+    #   request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
+    # end
   end
 end

@@ -1,0 +1,11 @@
+query Room($name: String!) {
+  room(name: $name) {
+    name
+    messages {
+      author {
+        name
+      }
+      body
+    }
+  }
+}

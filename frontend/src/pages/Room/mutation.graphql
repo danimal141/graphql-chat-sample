@@ -1,0 +1,12 @@
+# mutation PostMessage($input: PostMessageInput!) {
+#   postMessage(input: $input) {
+#     message {
+#       body
+#     }
+#   }
+# }
+mutation PostMessage($input: PostMessageInput!) {
+  postMessage(input: $input) {
+    message
+  }
+}

@@ -8,5 +8,8 @@ module Types
     def test_field
       'Hello World'
     end
+
+    field :create_room, mutation: Mutations::CreateRoom
+    field :post_message, mutation: Mutations::PostMessage
   end
 end

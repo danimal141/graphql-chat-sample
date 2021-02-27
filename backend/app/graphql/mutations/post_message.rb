@@ -1,29 +1,22 @@
 # frozen_string_literal: true
 
-class Mutations::PostMessage < Mutations::BaseMutation
-  field :message, Types::MessageType, null: true
+class Mutations::PostMessage < Mutations::LoginRequiredMutation
+  field :message, String, null: true
   field :errors, [String], null: false
 
-  argument :room, String, required: true, description: <<~DESC
-    The name of the room to post in.
-  DESC
-  argument :message, String, required: true, description: <<~DESC
-    The message to post.
-  DESC
+  argument :room, String, required: true
+  argument :message, String, required: true
 
   def resolve(room:, message:)
-    if !context.current_user
-      return { errors: ["Must login to post messages."] }
-    end
-
-    room = Room.find_or_create_by(name: room)
-    message = room.messages.build(user: context.current_user, body: message)
-    if message.save
+    room = Room.find_by(name: room)
+    new_message = room.messages.build(user: context.current_user, body: message)
+    if new_message.save
       # IRL this should probably be an after-commit hook.
-      GcsSchema.graphql_definition.subscriptions.trigger(:messageWasAdded, { room: room }, message)
-      { message: message, errors: [] }
+      # GcsSchema.graphql_definition.subscriptions.trigger(:messageWasAdded, { room: room }, message)
+      GcsSchema.graphql_definition.subscriptions.trigger(:messageWasAdded, {}, { message: new_message.body })
+      { message: new_message.body, errors: [] }
     else
-      { message: nil, errors: message.errors.full_messages }
+      { message: nil, errors: new_message.errors.full_messages }
     end
   end
 end
