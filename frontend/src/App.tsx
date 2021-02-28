@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
 import CurrentUser from "./pages/CurrentUser";
 import CreateRoom from "./pages/CreateRoom";
 import Room from "./pages/Room";
@@ -18,6 +19,9 @@ function App(): JSX.Element {
     >
       <AuthorizedProvider>
         <BrowserRouter>
+          <header>
+            <NavBar />
+          </header>
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/mypage" component={CurrentUser} />
