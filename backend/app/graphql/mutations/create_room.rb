@@ -8,7 +8,6 @@ class Mutations::CreateRoom < Mutations::LoginRequiredMutation
 
   def resolve(name:)
     room = Room.new(name: name)
-    p '----------'
     if room.save
       { room: room, errors: [] }
     else
