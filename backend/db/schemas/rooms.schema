@@ -6,5 +6,5 @@ create_table :rooms, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :c
   t.string :name, null: false, comment: 'Name'
   t.timestamps
 
-  t.index ['name'], name: 'idx_users_on_name', unique: true
+  t.index ['name'], name: 'idx_rooms_on_name', unique: true
 end
